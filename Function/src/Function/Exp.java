@@ -1,6 +1,7 @@
 package Function;
 
 import java.text.NumberFormat;
+import java.util.Objects;
 
 public class Exp implements Function{
     private final Function arg;
@@ -20,6 +21,19 @@ public class Exp implements Function{
     @Override
     public Function dx() {
         return Product.of(new Exp(arg), arg.dx());
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Exp exp = (Exp) o;
+        return Objects.equals(arg, exp.arg);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(arg);
     }
 
     @Override

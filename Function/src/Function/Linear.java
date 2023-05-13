@@ -1,6 +1,7 @@
 package Function;
 
 import java.text.NumberFormat;
+import java.util.Objects;
 
 public class Linear implements Function{
     public static final Linear X = new Linear(1.0) {
@@ -9,6 +10,20 @@ public class Linear implements Function{
             return "x";
         }
     };
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Linear linear = (Linear) o;
+        return Double.compare(linear.coef, coef) == 0;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(coef);
+    }
+
     private final double coef;
 
     public Linear(double coef) {

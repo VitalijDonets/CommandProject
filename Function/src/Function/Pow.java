@@ -1,6 +1,7 @@
 package Function;
 
 import java.text.NumberFormat;
+import java.util.Objects;
 
 public class Pow implements Function{
     private final Function base;
@@ -16,6 +17,19 @@ public class Pow implements Function{
     @Override
     public double calculate(double x) {
         return Math.pow(base.calculate(x), power);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Pow pow = (Pow) o;
+        return Double.compare(pow.power, power) == 0 && Objects.equals(base, pow.base);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(base, power);
     }
 
     @Override

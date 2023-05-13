@@ -1,6 +1,7 @@
 package Function;
 
 import java.text.NumberFormat;
+import java.util.Objects;
 
 public class Abs implements Function {
     private final Function arg;
@@ -23,5 +24,18 @@ public class Abs implements Function {
     @Override
     public String toPrettyString(NumberFormat nf) {
         return String.format("|%s|", arg.toPrettyString(nf));
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Abs abs = (Abs) o;
+        return Objects.equals(arg, abs.arg);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(arg);
     }
 }

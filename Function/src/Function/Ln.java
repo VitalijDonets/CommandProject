@@ -1,6 +1,7 @@
 package Function;
 
 import java.text.NumberFormat;
+import java.util.Objects;
 
 public class Ln implements Function{
     private final Function arg;
@@ -11,6 +12,19 @@ public class Ln implements Function{
 
     public static Ln of(Function f){
         return new Ln(f);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Ln ln = (Ln) o;
+        return Objects.equals(arg, ln.arg);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(arg);
     }
 
     @Override

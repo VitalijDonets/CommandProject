@@ -1,6 +1,7 @@
 package Function;
 
 import java.text.NumberFormat;
+import java.util.Objects;
 
 public class Cos implements Function{
     private final Function arg;
@@ -10,6 +11,19 @@ public class Cos implements Function{
     }
     public static Cos of(Function f){
         return new Cos(f);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Cos cos = (Cos) o;
+        return Objects.equals(arg, cos.arg);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(arg);
     }
 
     @Override

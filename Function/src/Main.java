@@ -13,8 +13,8 @@ public class Main {
         double x = scan.nextDouble();
         final Function f1 = Sum.of(
                 Exp.of(Product.of(
-                                Const.of(a),
-                                Pow.of(Cos.of(Linear.X), 2))
+                        Const.of(a),
+                        Pow.of(Cos.of(Linear.X), 2))
                 ),
                 Product.of(Const.of(-1),
                         Abs.of(Product.of(

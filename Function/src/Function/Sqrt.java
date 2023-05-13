@@ -1,6 +1,7 @@
 package Function;
 
 import java.text.NumberFormat;
+import java.util.Objects;
 
 public class Sqrt implements Function {
     private final Function arg;
@@ -10,6 +11,19 @@ public class Sqrt implements Function {
     }
     public static Sqrt of(Function f){
         return new Sqrt(f);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Sqrt sqrt = (Sqrt) o;
+        return Objects.equals(arg, sqrt.arg);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(arg);
     }
 
     @Override

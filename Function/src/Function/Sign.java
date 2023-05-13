@@ -1,6 +1,7 @@
 package Function;
 
 import java.text.NumberFormat;
+import java.util.Objects;
 
 public class Sign implements Function{
     private final Function arg;
@@ -14,6 +15,19 @@ public class Sign implements Function{
     @Override
     public double calculate(double x) {
         return Math.signum(arg.calculate(x));
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Sign sign = (Sign) o;
+        return Objects.equals(arg, sign.arg);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(arg);
     }
 
     @Override

@@ -2,6 +2,7 @@ package Function;
 
 import java.text.NumberFormat;
 import java.util.ArrayList;
+import java.util.Objects;
 import java.util.StringJoiner;
 
 public class Product extends Composite {

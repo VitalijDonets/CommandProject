@@ -1,6 +1,7 @@
 package Function;
 
 import java.text.NumberFormat;
+import java.util.Objects;
 
 public class Sin implements Function{
     private final Function arg;
@@ -14,6 +15,19 @@ public class Sin implements Function{
     @Override
     public double calculate(double x) {
         return Math.sin(arg.calculate(x));
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Sin sin = (Sin) o;
+        return Objects.equals(arg, sin.arg);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(arg);
     }
 
     @Override
