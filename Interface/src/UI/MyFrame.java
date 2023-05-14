@@ -24,7 +24,7 @@ public class MyFrame extends JFrame implements ActionListener {
 
     public MyFrame() {
 
-        String[] functions = {"sin(x)", "cos(x)", "e^x", "x", "sqrt(x)"};
+        String[] functions = {"|x|", "cos(x)","e^x","x","ln(x)","x^2","sin(x)","sqrt(x)"};
         Flist = new JComboBox(functions);
         Flist.addActionListener(this);
 
@@ -45,6 +45,7 @@ public class MyFrame extends JFrame implements ActionListener {
         this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         this.setSize(800, 600);
         this.setVisible(true);
+        this.setResizable(false);
 
         panel1.setPreferredSize(new Dimension(50, 50));
         panel2.setPreferredSize(new Dimension(100, 100));
@@ -70,7 +71,7 @@ public class MyFrame extends JFrame implements ActionListener {
         this.add(panel2, BorderLayout.CENTER);
         this.add(panel3, BorderLayout.SOUTH);
     }
-    Function currentFunction = Sin.of(Linear.X);
+    Function currentFunction = Abs.of(Linear.X);
     Function currentFunctionDX = null;
     @Override
     public void actionPerformed(ActionEvent e) {
@@ -79,12 +80,15 @@ public class MyFrame extends JFrame implements ActionListener {
         {
             currentFunctionDX = null;
             selectedFunction = (String) Flist.getSelectedItem();
-            if(selectedFunction == "sin(x)") currentFunction = Sin.of(Linear.X);
+            if(selectedFunction == "|x|") currentFunction = Abs.of(Linear.X);
             else if(selectedFunction == "cos(x)") currentFunction = Cos.of(Linear.X);
             else if(selectedFunction == "e^x") currentFunction = Exp.of(Linear.X);
             else if(selectedFunction == "x") currentFunction = Linear.X;
+            else if(selectedFunction == "ln(x)") currentFunction = Ln.of(Linear.X);
+            else if(selectedFunction == "x^2") currentFunction = Pow.of(Linear.X,2);
+            else if(selectedFunction == "sin(x)") currentFunction = Sin.of(Linear.X);
             else if(selectedFunction == "sqrt(x)") currentFunction = Sqrt.of(Linear.X);
-        }
+         }
         if(e.getSource() == buttonDraw)
         {
             if(chartPanel != null) panel2.remove(chartPanel);

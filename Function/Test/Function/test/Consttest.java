@@ -30,8 +30,8 @@ public class Consttest {
     }
     @Test
     public void testConst_der(){
-        final Function input = Const.of(10);
-        final Function expectedresultcal = Const.NULL;
+        final Function input = Linear.X;
+        final Function expectedresultcal = Const.of(1);
         final Function actualresult = input.dx();
         Assertions.assertEquals(expectedresultcal,actualresult);
     }
