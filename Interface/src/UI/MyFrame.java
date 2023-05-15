@@ -88,7 +88,6 @@ public class MyFrame extends JFrame implements ActionListener {
             else if(selectedFunction == "x") saved.currentFunction = Linear.X;
             else if(selectedFunction == "x^2") saved.currentFunction = Pow.of(Linear.X,2);
             else if(selectedFunction == "sin(x)") saved.currentFunction = Sin.of(Linear.X);
-            else if(selectedFunction == "sqrt(x)") saved.currentFunction = Sqrt.of(Linear.X);
          }
         if(e.getSource() == buttonDraw)
         {
