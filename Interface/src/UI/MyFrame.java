@@ -45,7 +45,7 @@ public class MyFrame extends JFrame implements ActionListener {
         textFieldDiapasonRight.setText("5");
 
         this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-        this.setSize(650, 600);
+        this.setSize(800, 600);
         this.setVisible(true);
         this.setResizable(false);
 
