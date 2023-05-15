@@ -30,9 +30,11 @@ public class MyFrame extends JFrame implements ActionListener {
 
         buttonDraw = new JButton("Намалювати графік");
         buttonDraw.addActionListener(this);
+        buttonDraw.setFocusable(false);
 
         buttonDX = new JButton("Знайти похідну");
         buttonDX.addActionListener(this);
+        buttonDX.setFocusable(false);
 
         textFieldDiapasonLeft = new JTextField();
         textFieldDiapasonLeft.setPreferredSize(new Dimension(100, 20));
@@ -43,7 +45,7 @@ public class MyFrame extends JFrame implements ActionListener {
         textFieldDiapasonRight.setText("5");
 
         this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-        this.setSize(800, 600);
+        this.setSize(650, 600);
         this.setVisible(true);
         this.setResizable(false);
 
