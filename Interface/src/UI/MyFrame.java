@@ -24,7 +24,7 @@ public class MyFrame extends JFrame implements ActionListener {
 
     public MyFrame() {
 
-        String[] functions = {"|x|", "cos(x)","e^x","x","ln(x)","x^2","sin(x)","sqrt(x)"};
+        String[] functions = {"|x|", "cos(x)","e^x","x","x^2","sin(x)","sqrt(x)"};
         Flist = new JComboBox(functions);
         Flist.addActionListener(this);
 
@@ -84,7 +84,6 @@ public class MyFrame extends JFrame implements ActionListener {
             else if(selectedFunction == "cos(x)") currentFunction = Cos.of(Linear.X);
             else if(selectedFunction == "e^x") currentFunction = Exp.of(Linear.X);
             else if(selectedFunction == "x") currentFunction = Linear.X;
-            else if(selectedFunction == "ln(x)") currentFunction = Ln.of(Linear.X);
             else if(selectedFunction == "x^2") currentFunction = Pow.of(Linear.X,2);
             else if(selectedFunction == "sin(x)") currentFunction = Sin.of(Linear.X);
             else if(selectedFunction == "sqrt(x)") currentFunction = Sqrt.of(Linear.X);
@@ -117,7 +116,6 @@ public class MyFrame extends JFrame implements ActionListener {
             panel2.add(chartPanel);
             chartPanel.setVisible(true);
             chartPanel.revalidate();
-            chartPanel.repaint();
         }
         if(e.getSource() == buttonDX)
         {
