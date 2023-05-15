@@ -7,9 +7,11 @@ import java.awt.event.ActionListener;
 import java.text.NumberFormat;
 
 import Function.*;
+import jointClass.SaveFunctions;
 import org.knowm.xchart.*;
 
 public class MyFrame extends JFrame implements ActionListener {
+    SaveFunctions saved = new SaveFunctions();
     JPanel panel1 = new JPanel();
     JPanel panel2 = new JPanel();
     JPanel panel3 = new JPanel();
@@ -23,9 +25,9 @@ public class MyFrame extends JFrame implements ActionListener {
     XChartPanel<XYChart> chartPanel = null;
 
     public MyFrame() {
+        this.setTitle("Action with Function");
 
-        String[] functions = {"|x|", "cos(x)","e^x","x","x^2","sin(x)","sqrt(x)"};
-        Flist = new JComboBox(functions);
+        Flist = new JComboBox(saved.functions);
         Flist.addActionListener(this);
 
         buttonDraw = new JButton("Намалювати графік");
@@ -73,22 +75,20 @@ public class MyFrame extends JFrame implements ActionListener {
         this.add(panel2, BorderLayout.CENTER);
         this.add(panel3, BorderLayout.SOUTH);
     }
-    Function currentFunction = Abs.of(Linear.X);
-    Function currentFunctionDX = null;
     @Override
     public void actionPerformed(ActionEvent e) {
         String selectedFunction;
         if(e.getSource() == Flist)
         {
-            currentFunctionDX = null;
+            saved.currentFunctionDX = null;
             selectedFunction = (String) Flist.getSelectedItem();
-            if(selectedFunction == "|x|") currentFunction = Abs.of(Linear.X);
-            else if(selectedFunction == "cos(x)") currentFunction = Cos.of(Linear.X);
-            else if(selectedFunction == "e^x") currentFunction = Exp.of(Linear.X);
-            else if(selectedFunction == "x") currentFunction = Linear.X;
-            else if(selectedFunction == "x^2") currentFunction = Pow.of(Linear.X,2);
-            else if(selectedFunction == "sin(x)") currentFunction = Sin.of(Linear.X);
-            else if(selectedFunction == "sqrt(x)") currentFunction = Sqrt.of(Linear.X);
+            if(selectedFunction == "|x|") saved.currentFunction = Abs.of(Linear.X);
+            else if(selectedFunction == "cos(x)") saved.currentFunction = Cos.of(Linear.X);
+            else if(selectedFunction == "e^x") saved.currentFunction = Exp.of(Linear.X);
+            else if(selectedFunction == "x") saved.currentFunction = Linear.X;
+            else if(selectedFunction == "x^2") saved.currentFunction = Pow.of(Linear.X,2);
+            else if(selectedFunction == "sin(x)") saved.currentFunction = Sin.of(Linear.X);
+            else if(selectedFunction == "sqrt(x)") saved.currentFunction = Sqrt.of(Linear.X);
          }
         if(e.getSource() == buttonDraw)
         {
@@ -107,10 +107,10 @@ public class MyFrame extends JFrame implements ActionListener {
             for(int j = 0; j < size; t += 0.1, j++)
             {
                 xData[j] = (double) Math.round(t * 100) / 100;
-                yData[j] = currentFunction.calculate(xData[j]);
+                yData[j] = saved.currentFunction.calculate(xData[j]);
             }
 
-            XYChart chart = QuickChart.getChart("f(x) = " + currentFunction.toPrettyString(NumberFormat.getInstance()),
+            XYChart chart = QuickChart.getChart("f(x) = " + saved.currentFunction.toPrettyString(NumberFormat.getInstance()),
                     "X", "Y", "f(x)", xData, yData);
 
             chartPanel = new XChartPanel<>(chart);
@@ -121,9 +121,9 @@ public class MyFrame extends JFrame implements ActionListener {
         }
         if(e.getSource() == buttonDX)
         {
-            if(currentFunctionDX == null) currentFunctionDX = currentFunction.dx();
-            else currentFunctionDX = currentFunctionDX.dx();
-            textdx.setText("f'(x) = " + currentFunctionDX.toPrettyString(NumberFormat.getInstance()));
+            if(saved.currentFunctionDX == null) saved.currentFunctionDX = saved.currentFunction.dx();
+            else saved.currentFunctionDX = saved.currentFunctionDX.dx();
+            textdx.setText("f'(x) = " + saved.currentFunctionDX.toPrettyString(NumberFormat.getInstance()));
             textdx.setVisible(true);
         }
     }
