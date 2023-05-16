@@ -11,7 +11,7 @@ import javafx.stage.Stage;
 import Function.*;
 import jointClass.SaveFunctions;
 
-import java.text.NumberFormat;
+import java.text.NumberFormat
 
 public class FXInt extends Application {
     SaveFunctions saved = new SaveFunctions();
